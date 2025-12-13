@@ -30,8 +30,8 @@
                 <slot :name="col.key" :item="item">
                   <!-- Default Rendering -->
                   <div v-if="col.key === 'actions'">
-                    <button @click="$emit('edit', item)" class="text-indigo-600 hover:text-indigo-900 font-medium mr-4">Edit</button>
-                    <button @click="$emit('delete', item.id)" class="text-red-600 hover:text-red-900 font-medium">Delete</button>
+                    <button @click="$emit('edit', item)" class="text-indigo-600 hover:text-indigo-900 font-medium mr-4 cursor-pointer">Edit</button>
+                    <button @click="$emit('delete', item.id)" class="text-red-600 hover:text-red-900 font-medium cursor-pointer">Delete</button>
                   </div>
   
                   <!-- Airport Tags (origins/destinations) -->
