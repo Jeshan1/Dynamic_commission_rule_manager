@@ -79,3 +79,9 @@ A Laravel + Vue.js application for managing airline/flight commission rules base
     }
   ]
 }
+
+## Feature Testing added for create,update and delete commission rule
+
+## There is CommissionRuleTest.php file inside tests/feature/
+** You can operate commission rule feature testing by triggering that command
+`php artisan test --filter=CommissionRuleTest`
