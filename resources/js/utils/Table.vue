@@ -7,7 +7,7 @@
         <button
           v-if="canCreate"
           @click="$emit('create')"
-          class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2.5 rounded-lg text-sm transition"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2.5 rounded-lg text-sm transition cursor-pointer"
         >
           {{ createLabel || `Create ${title}` }}
         </button>
