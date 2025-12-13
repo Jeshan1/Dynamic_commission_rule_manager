@@ -59,6 +59,9 @@ const store = createStore({
       } finally {
         commit('SET_TOKEN', null)
         commit('SET_USER', null)
+
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
       }
     }
   }
