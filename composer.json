@@ -47,7 +47,11 @@
         ],
         "test": [
             "@php artisan config:clear --ansi",
-            "@php artisan test"
+            "@php artisan test",
+            "@php artisan cache:clear"
+        ],
+        "test:coverage": [
+            "@php artisan test --coverage-html coverage"
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",

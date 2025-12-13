@@ -16,7 +16,7 @@ return new class extends Migration
             $table->decimal('rate_value', 10, 2);
             $table->enum('rate_type', ['percentage', 'flat']);
             $table->timestamps();
-            // optional: $table->softDeletes();
+            // $table->softDeletes(); if needed you can use soft delete
         });
     }
 
