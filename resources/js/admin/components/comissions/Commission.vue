@@ -17,12 +17,10 @@
 
         <form @submit.prevent="submitForm" class="space-y-8">
 
-          <!-- Main Rules Container -->
           <div class="space-y-6">
             
-            <!-- Sectors Section -->
             <div class="border border-gray-200 rounded-lg">
-              <!-- Section Header -->
+
               <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
                 <h3 class="text-lg font-semibold text-gray-700">Sectors</h3>
               </div>
@@ -33,7 +31,7 @@
                 :key="index"
                 class="p-6 relative border-b border-gray-200 last:border-b-0"
               >
-                <!-- Remove Rule Button -->
+
                 <button
                   v-if="rules.length > 1"
                   type="button"
@@ -43,12 +41,10 @@
 
                 <div class="grid grid-cols-12 gap-6 items-center">
 
-                  <!-- ORIGIN -->
                   <div class="col-span-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Origin</label>
                     <div class="relative">
                       
-                      <!-- Search Input -->
                       <input
                         v-model="rule.originSearch"
                         @focus="rule.showOriginDropdown = true"
@@ -57,26 +53,22 @@
                         class="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm"
                       />
 
-                      <!-- Selected Tags -->
                       <div class="mb-2 mt-2 flex flex-wrap gap-4">
                         <label
                           v-for="airport in rule.origins"
                           :key="airport.code"
                           class="flex items-center gap-2 text-sm text-gray-800"
                         >
-                          <!-- Checkbox -->
                           <span class="w-4 h-4 bg-blue-600 rounded flex items-center justify-center flex-shrink-0">
                             <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                             </svg>
                           </span>
 
-                          <!-- Airport Code -->
                           <span class="font-medium">
                             {{ airport.code }}
                           </span>
 
-                          <!-- Remove -->
                           <button
                             type="button"
                             @click="removeAirport(rule.origins, airport)"
@@ -94,7 +86,6 @@
                         </span>
                       </div>
 
-                      <!-- Dropdown -->
                       <div
                         v-if="rule.showOriginDropdown"
                         class="absolute z-10 top-full left-0 right-0 mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-y-auto"
@@ -114,7 +105,6 @@
                     </div>
                   </div>
 
-                  <!-- DESTINATION -->
                   <div class="col-span-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Destination</label>
                     <div class="relative">
@@ -132,19 +122,16 @@
                           :key="airport.code"
                           class="flex items-center gap-2 text-sm text-gray-800"
                         >
-                          <!-- Checkbox -->
                           <span class="w-4 h-4 bg-blue-600 rounded flex items-center justify-center flex-shrink-0">
                             <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
                             </svg>
                           </span>
 
-                          <!-- Airport Code -->
                           <span class="font-medium">
                             {{ airport.code }}
                           </span>
 
-                          <!-- Remove -->
                           <button
                             type="button"
                             @click="removeAirport(rule.destinations, airport)"
@@ -154,7 +141,6 @@
                           </button>
                         </label>
 
-                        <!-- Empty state -->
                         <span
                           v-if="rule.destinations.length === 0"
                           class="text-gray-400 text-sm"
@@ -182,7 +168,6 @@
                     </div>
                   </div>
 
-                  <!-- RATE -->
                   <div class="col-span-3" :class="{ 'mt-[-32px]': index === 0 }">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Rate</label>
                     <div class="flex items-center space-x-2">
@@ -210,7 +195,6 @@
             </div>
           </div>
 
-          <!-- Add New Rule -->
           <div class="text-left py-4">
             <button
               type="button"
@@ -220,7 +204,7 @@
               <span class="text-2xl mr-2">+</span> Add New Default Rate
             </button>
           </div>
-          <!-- Submit -->
+
           <div class="pt-8">
             <button
               type="submit"
@@ -237,6 +221,7 @@
   
 <script setup>
   import { ref, watch } from "vue";
+  import Swal from "sweetalert2";
   
   const props = defineProps({
     show: Boolean,
@@ -375,7 +360,11 @@
     );
   
     if (!valid) {
-      alert("Please complete all fields in every rule.");
+      Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please fill in all the required fields for each rule.",
+        });
       return;
     }
   

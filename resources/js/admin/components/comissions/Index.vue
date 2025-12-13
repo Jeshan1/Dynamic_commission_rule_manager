@@ -1,6 +1,6 @@
 <template>
     <div class="p-8">
-      <!-- Using Custom Table component -->
+      <!-- Using Custom Table component to make reusable component if needed -->
       <Table                                          
         title="Default Commissions"
         create-label="Create Commission Rule"
@@ -26,7 +26,7 @@
   import Table from '../../../utils/Table.vue'
   import CommissionModal from './Commission.vue'
   import Swal from 'sweetalert2';
-  import api from '@/axios'
+  import api from '../../../axios'
   import { useStore } from 'vuex'
   
   const commissions = ref([])
