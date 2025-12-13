@@ -36,6 +36,7 @@
   import { ref, computed } from "vue";
   import { useStore } from "vuex";
   import { useRouter } from "vue-router";
+  import Swal from "sweetalert2";
   
   const store = useStore();
   const router = useRouter();
@@ -47,11 +48,19 @@
   
   async function submitLogin() {
   
-    await store.dispatch("login", { email: email.value, password: password.value });
+    const res =await store.dispatch("login", { email: email.value, password: password.value });
+
+    if(res.success){
+      router.push("/admin");
+    }
+    else{
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: res.message,
+      });
+    }
   
-    if (store.state.error) return;
-  
-    router.push("/admin");
   }
   </script>
   

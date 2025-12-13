@@ -37,6 +37,13 @@ const store = createStore({
     async login({ commit }, credentials) {
       try {
         const res = await api.post('/api/login', credentials)
+        if(!res.data.success) {
+          return {
+            success: false,
+            message: res.data.message
+          }
+        }
+        
         const { token, user } = res.data.data
         
         commit('SET_TOKEN', token)
