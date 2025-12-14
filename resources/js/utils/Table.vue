@@ -26,15 +26,14 @@
           <tbody class="bg-white divide-y divide-gray-200">
             <tr v-for="item in validItems" :key="item.id" class="hover:bg-gray-50">
               <td v-for="col in columns" :key="col.key" class="px-6 py-4 text-sm text-gray-900">
-                <!-- Custom Slot -->
+
                 <slot :name="col.key" :item="item">
-                  <!-- Default Rendering -->
+
                   <div v-if="col.key === 'actions'">
                     <button @click="$emit('edit', item)" class="text-indigo-600 hover:text-indigo-900 font-medium mr-4 cursor-pointer">Edit</button>
                     <button @click="$emit('delete', item.id)" class="text-red-600 hover:text-red-900 font-medium cursor-pointer">Delete</button>
                   </div>
   
-                  <!-- Airport Tags (origins/destinations) -->
                   <div v-else-if="Array.isArray(item[col.key]) && item[col.key][0]?.code" class="flex flex-wrap gap-1">
                     <span
                       v-for="apt in item[col.key]"
@@ -45,7 +44,6 @@
                     </span>
                   </div>
   
-                  <!-- Default Text -->
                   <span v-else>
                     {{ displayValue(item[col.key]) }}
                   </span>
